@@ -181,7 +181,7 @@ def create_superblock(proposals, event_block_height, budget_max, sb_epoch_time):
 
 # shims 'til we can fix the madcoind side
 def SHIM_serialise_for_madcoind(sentinel_hex):
-    from models import DESIRED_GOVOBJ_TYPES
+    from models import madcoind_GOVOBJ_TYPES
     # unpack
     obj = deserialise(sentinel_hex)
 
@@ -189,7 +189,7 @@ def SHIM_serialise_for_madcoind(sentinel_hex):
     govtype = obj[0]
 
     # add 'type' attribute
-    obj[1]['type'] = DESIRED_GOVOBJ_TYPES[govtype]
+    obj[1]['type'] = madcoind_GOVOBJ_TYPES[govtype]
 
     # superblock => "trigger" in madcoind
     if govtype == 'superblock':
@@ -205,7 +205,7 @@ def SHIM_serialise_for_madcoind(sentinel_hex):
 
 # shims 'til we can fix the madcoind side
 def SHIM_deserialise_from_madcoind(madcoind_hex):
-    from models import DESIRED_GOVOBJ_TYPES
+    from models import madcoind_GOVOBJ_TYPES
 
     # unpack
     obj = deserialise(madcoind_hex)
