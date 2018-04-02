@@ -29,7 +29,7 @@ db.connect()
 
 
 # TODO: lookup table?
-DESIRED_GOVOBJ_TYPES = {
+MADCOIND_GOVOBJ_TYPES = {
     'proposal': 1,
     'superblock': 2,
     'watchdog': 3,
@@ -268,7 +268,7 @@ class Proposal(GovernanceClass, BaseModel):
     payment_amount = DecimalField(max_digits=16, decimal_places=8)
     object_hash = CharField(max_length=64)
 
-    govobj_type = DESIRED_GOVOBJ_TYPES['proposal']
+    govobj_type = MADCOIND_GOVOBJ_TYPES['proposal']
 
     class Meta:
         db_table = 'proposals'
@@ -440,7 +440,7 @@ class Superblock(BaseModel, GovernanceClass):
     sb_hash = CharField()
     object_hash = CharField(max_length=64)
 
-    govobj_type = DESIRED_GOVOBJ_TYPES['superblock']
+    govobj_type = MADCOIND_GOVOBJ_TYPES['superblock']
     only_masternode_can_submit = True
 
     class Meta:
@@ -600,7 +600,7 @@ class Watchdog(BaseModel, GovernanceClass):
     created_at = IntegerField()
     object_hash = CharField(max_length=64)
 
-    govobj_type = DESIRED_GOVOBJ_TYPES['watchdog']
+    govobj_type = MADCOIND_GOVOBJ_TYPES['watchdog']
     only_masternode_can_submit = True
 
     @classmethod
